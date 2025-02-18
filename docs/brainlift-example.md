@@ -1,0 +1,423 @@
+BrainLift - BrainLift Structure for Ephor
+
+- Purpose
+  - BrainLift is our take on the general 2nd brain concept.  
+    - we've taken the general concept of a 2nd brain as a personal knowledge management system and made it relevant for AI.
+  - BrainLifts layer our SpikyPOVs (new knowledge) on top of LLMs so that you can use generative AI beyond the current knowledge frontier
+    - in AI there is room for both sides of an argument and decisions are left unmade. SpikyPOVs are the solution to that.
+      - in china/japan the needs of the community outweigh the needs of the one
+      - US is the opposite of that 
+      - if you are an LLM and asked which is right, there is not a right answer and as an LLM you have to leave room for both answers
+      - the spikyPOV is the solution - when you provide your spikyPOV it enables the AI to get through the analysis paralysis and move forward in your direction.
+      - humans will always need to build their spikyPOV so that AI becomes useful in their context.
+  - Ephor is being used to process your BrainLift so it needs to adhere to our specific structure and format.
+  - The purpose of this BrainLift is to create the BrainLift structure, a 2nd Brain structure for ephor.  Ephor uses the structure to do the following.
+    - Ephor knows how to "filter the internet" for the content required to be an expert in the domain.  Example: if the BrainLift has at least a list of twitter experts, ephor could create a relevant social media feed that a person could read to become an expert in the field.
+    - Ephor knows exactly what to include in the system prompt / context / rag of the LLM so that BrainLifts can override LLMs bland average responses.
+    - Ephor can crawl the corpus of BrainLifts and look for inconsistencies 
+    - Ephor can read a project centric reading list, or twitter feed and suggest additions to the BrainLift. Ephor will be able to generate 100 insightful tweets a day from scanning content from the BrainLift's expert list. 
+  - BrainLift provides structure for becoming an expert and a voracious self-driven learner.
+  - Creating a BrainLift requires thinking and writing that ranges from DOK 1 (can you recall facts and procedures) all the way through DOK 4 (can you create new knowledge by overlapping deep knowledge from multiple domains)
+- Template - Layout of the BrainLift Structure and Examples
+  - Name of BrainLift (e.g. Cognitive Load Theory BrainLift)
+    - There is a Purpose, a set of Experts, a set of Sources, a Knowledge Tree / set of Categories of sources, Insights, and SpikyPOVs (including both truths and myths)
+    - Purpose
+      - the reason for this BrainLift
+      - how it will be used
+      - what is in scope and not in scope in this BrainLift
+        - only include scope statements if you have concrete examples of things in scope and out of scope that are important to highlight.  leave scope statements out until you have important examples.
+    - SpikyPOVs
+      - SpikyPOVs - connecting and adapting insights from BrainLift and prior knowledge and curating them into a prioritized list of SpikyPOVs requires the extended thinking of DOK 4.  
+        - SpikyPOVs are formed by combining and overlapping 2 or more domains
+          - adapting an insight from one domain to a specific problem in another
+        - DOK Level 4: Extended Thinking
+          - Tasks demand complex reasoning over an extended period.
+          - Involves integrating knowledge from multiple sources or areas.
+        - SpikyPOVs go beyond insights.  For example, an insight might tell you what is surprising, and the spikyPOV might combine that insight with others and would make an actionable decision about what we are going to do about it. example:
+          - DOK 1 & 2 - facts: company financial statement facts and summaries
+          - DOK 3 - insight: no correlation between sales spend and growth
+          - DOK 4 - spikyPOV: remove sales teams on acquisition
+      - SpikyPOVs Template
+        - spikyPOVs can be written as either truths or myths
+        - Truths 
+          - What we believe
+          - takes a firm stance where LLMs hold both sides
+          - contradicts and replaces what LLM training says is true
+          - is above and beyond commonly held knowledge
+        - Myths
+          - What we don't believe
+          - commonly held fallacies that you will receive from the internet and LLMs trained on the internet
+        - Truths and Myths are asymmetric - you don't have to have a myth for every truth, or vice versa.
+      - Template SpikyPOVs
+        - Truths
+          - SpikyPOV truth 1
+          - SpikyPOV truth 2
+        - Myths
+          - SpikyPOV myth 1
+          - SpikyPOV myth 2
+      - Example SpikyPOVs - Learning Science SpikyPOVs
+        - Truths
+          - The traditional "teacher-in-front-of-the-classroom" model is one of the worst ways to teach students.  It has been used for 100 years because it was cost effective and allowed school to be provided to everyone.
+          - Learning Science has written papers for 40 years that highlight how bad teacher-in-front-of-the-classroom model performs and presented better solutions that allow students to learn 2x,5x,10x better and faster.
+          - All students can learn 2x in 2hrs per day.  If the student isn't learning then it is the system's fault, not the student's. A true learning system must take responsibility for learning outcomes.
+          - Everything you need to know to teach students 2x in 2hrs per day has already been written about and documented.
+          - Direct Instruction is the fastest way to get information into a student's brain.  Once the basic facts and procedures (DOK levels 1 and 2) are in the student's brain, then add rigor around abstract reasoning, strategic thinking, and transfer (DOK 3 and 4).
+          - Mastery Learning, where students don't move on to more difficult material unless they've mastered the prerequisites, is 2x - 5x more efficient than "conveyor belt" systems that move students ahead in curriculums based on their age.
+          - Motivation is more important than IQ - a motivational program can increase student's learning rate by 3x wheres high IQ vs median IQ only impacts learning on the order of 50%
+          - Extrinsic motivation is commonly seen as inferior to intrinsic.  We see that aggressive extrinsic motivation pushes students through rigorous mastery based learning.  Success with rigorous standards breeds confidence which in turn builds intrinsic motivation.  
+          - Density of learning sits on a continuum. On the far left side, highly motivated students can learn quickly, which is the core of 2hr learning philosophy. On the right hand side is "Edutainment" which tries to use low educational density to overcome a lack of strong motivation
+          - Timed Testing is necessary because some knowledge needs to have "instant" recall so you can use it as a foundation for higher level concepts.  Without automaticity as part of the mastery standard, students spend cognitive load on mental computation that could otherwise be used for higher reasoning (DOK 3 and 4)
+          - Learning a lesson the first time, and then using spaced repetition to combat the forgetting curve is the best way to retain long term
+          - There are differences in student working memory capacity (WMC) that have a measurable impact on learning speed.  Presenting materials that exceed a student's WMC lead to unproductive struggle. We measure student working memory capacity so that we can generate and present materials that do not exceed the student's WMC.  
+          - AI can teach students better than teachers. Its not trivial to do but there are obvious advantages: AI social/emotional/motivational is better than the average teacher, AI is scalable to one on one, AI can remember all student context, interests, academic history, 
+        - Myths
+          - We don't believe that inquiry based learning is a replacement for rote learning.  Inquiry based learning, by itself, is effective for only a small percentage of students who can learn the basics on their own (top 5% of students) and want to start with DOK 3 and DOK 4 type exercises, or AFTER students have learned the basics (DOK 1 and DOK 2).
+          - We don't believe that "rote" learning and "drill and kill" are bad.  These are the fastest ways to get facts and algorithms (DOK 1 and DOK 2) into the brain so that students can work on higher order mastery (DOK 3 and 4)
+          - We don't believe that common core is bad.  Common Core standards describe the knowledge and capabilities that students need. You'll be hard pressed to find any standard that parents don't want their kids to know.
+          - We don't believe standardized testing is bad.
+          - We don't believe that all timed testing is bad.  We believe that some standardized tests should be untimed,  but we believe that some knowledge needs to have "instant" recall so you can use it as a foundation for higher level concepts. (fast math). For example:
+            - it makes no sense for students to start learning multi-digit addition if they don't have 1.5 sec recall on sums to 18.
+            - when basic facts take time and cognitve load, there are more "careless errors" and lack of cognitive ability for higher concepts.
+          - We don't believe that extrinsic motivation is bad - its great for kickstarting a positive feedback cycle of competence and confidence
+    - Knowledge Tree / Categories
+      - Knowledge categories are how you subdivide the domain of the Brainlift into sub topics.  
+        - Categorizing and summarizing sets of source materials into a coherent and easy to understand knowledge tree is DOK 2
+          - DOK Level 2: Skills and Concepts
+            - Tasks require engagement with methods or concepts.
+            - Involves reasoning, organizing, and summarizing information.
+      - A Category is a summary, a set of subcategories or set of sources, and a set of optional insights. 
+      - Sources
+        - Sources are primary source documents.  Creating source material entries by reading source materials, pulling out important facts and filling out forms requires only the recall and reproduction of DOK 1
+          - Sources can be books, papers, articles, tweets, blog posts, diagrams, apps, tools, websites
+          - DOK Level 1: Recall and Reproduction
+            - Tasks require recall of facts or procedures.
+            - Involves following straightforward steps or instructions.
+        - sources have a summary, a link, and optional insights
+        - Example Source - Ms. Sam @sciinthemaking on teaching science w/ inquiry learning
+          - summary
+            - a common misconception is that students should learn science by inquiry learning because that is what expert scientists do, but scientists are experts (not novices), and students are novices and novices need direct explicit instruction.  
+          - link
+            - [https://x.com/sciinthemaking/status/1857870824218439701?s=43&t=--Wxh1KU1EIrDEZl0LAbGA](https://x.com/sciinthemaking/status/1857870824218439701?s=43&t=--Wxh1KU1EIrDEZl0LAbGA)
+          - insights
+            - the misconception "science should be taught with inquiry learning" is an example of the expertise reversal effect
+        - Example Source - WHAT WE ALREADY KNOW DETERMINES WHAT, HOW, AND HOW WELL WE LEARN - Paul A. Kirschner & Mirjam Neelen
+          - summary
+            - what you already know is the most important factor in your rate of learning
+            - prior knowledge is made up of schemas in long term memory that are the structures with "hooks" or "tree branches" to hang new knowledge on
+            - An advance organizer is information presented by an instructor that helps the student organize new incoming information.  It creates hooks for the upcoming lesson information to "hang on"
+            - Ausabel's Assimilation and Subsumption Theory explains the 4 ways that new information can "hook onto" existing prior knowledge schemas
+              - Ausubel’s theory identifies four distinct types of subsumption or assimilation processes that describe how new information is integrated into existing cognitive structures:
+              - Derivative Subsumption 
+                - New information is connected to existing cognitive structures as examples or extensions of already known concepts. For instance, if someone understands the concept of mammals, learning about a new mammal species would be integrated through derivative subsumption, as it represents another example of the existing concept.
+              - Correlative Subsumption
+                - This process involves incorporating new information into higher-order concepts, often modifying or extending the original understanding. The new information not only connects to existing knowledge but also enhances or modifies it. For example, when someone with basic economic knowledge learns about complex financial derivatives, they modify and expand their existing understanding of economics.
+              - Superordinate Subsumption
+                - This type of learning occurs when a new, higher-level concept is introduced that helps organize and integrate previously learned information. It creates an overarching framework that unifies existing knowledge. For instance, when programmers who know various programming languages learn about object-oriented programming, this new paradigm helps organize their previous knowledge under a broader concept.
+              - Combinatorial Subsumption 
+                - This process involves connecting ideas across different higher-level concepts to create new understanding. It enables learners to synthesize knowledge from various domains. A practical example is understanding how animal fur functions as insulation by combining knowledge of physics principles with biological concepts.
+            - 4 different kinds of advance organizers: expository, narrative, skimming and graphic organisers. 
+              - Expository organisers provide descriptions of new knowledge that learners will need to understand what follows and is often used when the new learning material is relatively unknown to the learner by relating the new information to what is already known. 
+              - Narrative organisers present new information in a story format to the learners to activate background knowledge so that learners can make connections to what they know, often creating a personal connection to inspire learning. 
+              - A skimming organiser gives a helicopter overview of the new learning material, focusing on and noting what stands out in the new material such as headings, subheadings, and highlighted information. 
+              - Finally, graphic organisers include different types of visuals such as concept maps, pictographs, Venn diagrams, and so forth.
+          - link
+            - [https://3starlearningexperiences.wordpress.com/2019/05/21/what-we-already-know-determines-what-how-and-how-well-we-learn/](https://3starlearningexperiences.wordpress.com/2019/05/21/what-we-already-know-determines-what-how-and-how-well-we-learn/)
+          - insights
+            - Long term memory organizes knowledge hierarchically in schemas.  
+            - Incept will be great at generating 4 different kinds of advance organizers
+              - diagrams, narratives, skimming, expository
+              - particularly useful for science and history
+              - generateDiagram, generateNarrative, generateSkimming, generateExpository
+              - Athena currently only uses expository organizers in its videos
+              - Heimler videos are good because of his application of Ausabel's assimilation and subsumption theories in creating advance organizers.
+            - The 4 different types of subsumption / assimilations map onto the DOK levels
+              - Derivative Subsumption is DOK 1
+                - adding a fact into an existing category (hydrogen is an element, 5X6=30 is part of the times tables, ...)
+              - Correlative Subsumption is DOK 2
+                - adding a new category to an existing framework and adjusting the framework to account for the new reality
+              - Superordinate Subsumption is DOK 3
+                - adding a higher level schema and reorganizing schemas that were previously independent under one concept heading. "making connections"
+                - Learning Ausabel's Assimilation Theory is an example of a superordinate subsumption.  If you already know that narratives and diagrams help students learn, then assimilation theory, a higher level concept, explains why.
+              - Combinatorial Subsumption is DOK 4
+                - overlapping 2 schemas to make something better than whole.
+                - combining knowledge of generative AI / Incept and Ausabels Assimilation Theory to make incept generate high quality advance organizers of 4 different types is an example of combinatorial subsumption
+            - using ausabel's framework, evaulate instructional videos khan, heimler, athena
+              - athena - nearly all expository (no diagrams, a hint of a story, no skimming)
+              - DI Theory or Instruction - focuses on diagrams and then goes over them with expository voice over - dual-coded (visual, and audio)
+              - would ausabel rate this highly? a story about a diagram is a dual-code advanced organizer covering both diagram and narrative
+      - Insights
+        - Insights are surprising, contrarian, or new learnings. They can come from going deep into a domain with a fresh perspective or from drawing a logical conclusion from one or more sources or categories.
+        - optional Insights can be added at each level of the BrainLift hierarchy: on a category, subcategory, or an individual source
+        - Generating insights by creating frameworks and comparing and contrasting different points of view requires the strategic thinking of DOK 3. 
+          - DOK Level 3: Strategic Thinking
+            - Tasks involve reasoning, planning, and using evidence.
+            - Requires higher-order thinking skills and decision-making.
+      - Categories can be overlapping. 
+        - source documents may be under two different categories
+        - Use links, NOT mirroring, to avoid cutting and pasting and to keep the workflowy simple (mirrors lack a clear "master" location and make BrainLifts too busy).
+      - Template Knowledge Tree / Categories
+        - Category 1  
+          - Summary
+          - Sources
+            - Template Source - Source 1 Name
+              - summary 
+                - summary 
+                - list of important facts
+              - link
+                - link to the source
+              - insights - optional
+                - surprising, contrarian, or new learnings from the source
+            - 
+          - Insights - optional
+            - insight 1
+            - insight 2
+        - Category 2
+          - Summary
+          - Sources
+          - Insights - optional
+            - insight 1
+            - insight 2
+      - Example Knowledge Category - Training LLMs
+        - summary
+          - LLMs can be overridden in the following ways
+            - Fine-Tuning - need lots of training data and investment in one LLM.  lose it all when upgrading to new models so its hard to ride the wave.
+            - RAG - easy to ride the AI wave, but doesn't override as well as Context.
+            - Context - easy to ride the AI wave, overrides better than RAG
+            - Self-evolving LLMs - better than fine-tuning, but hard to ride the wave.
+        - sources
+          - Source - What If LLMs Could Continue Learning?
+            - Summary
+              - Writer is an AI startup company
+              - Self-evolving LLMs learn from past interactions without RAG or finetuning
+            - Link
+              - [https://www.theinformation.com/articles/what-if-llms-could-continue-learning?rc=nn1f8a](https://www.theinformation.com/articles/what-if-llms-could-continue-learning?rc=nn1f8a)
+            - insights
+              - This sounds perfect for training an LLM on our 2nd brain ideas
+              - this will give us another option (on top of fine-tuning and RAG and context packing) for overriding LLMs using BrainLifts
+          - 
+        - insights
+          - use context to override LLM "average" knowledge
+  - Name of BrainLift (e.g. Cognitive Load Theory BrainLift) #copy
+    - There is a Purpose, a set of Experts, a set of Sources, a Knowledge Tree / set of Categories of sources, Insights, and SpikyPOVs (including both truths and myths)
+    - Purpose
+      - the reason for this BrainLift
+      - how it will be used
+      - what is in scope and not in scope in this BrainLift
+        - only include scope statements if you have concrete examples of things in scope and out of scope that are important to highlight.  leave scope statements out until you have important examples.
+    - Experts
+      - List the experts in the domain of this BrainLift.  These are the people that you will follow voraciously to become an expert yourself.
+      - Experts - Experts are people or organizations or websites or mailing lists that should be followed because they produce Sources (tweets, blog posts, articles, papers, books). Creating lists of experts is DOK1
+        - the experts list can be used to "filter the internet" to just materials produced by experts in the field.
+        - humans can create expert lists by asking perplexity, searching twitter, find like posts, and following links.
+        - the expert list is the most foundational part of a BrainLift on which everything else is based.
+      - Each expert entry will include who the expert is, what their main views are, why you are following them, and the main places ephor can look to find them online.
+      - In the experts section, do not include analysis of their sources, just list them for Ephor.  You can organize their analyzed sources in the Knowledge Tree
+      - you can start organizing experts into categories when the list of experts becomes hard to manage without them.
+      - Expert Template - Expert 1
+        - who: titles and "claims to fame"
+        - focus: topics they are expert in
+        - why follow: main views of the expert and how they are valuable for this BrainLift
+        - where: how to find the expert on the internet - twitter handle, blog, books, papers, written
+      - Example Expert - Andrew Ng 
+        - AI Education and Research
+        - Who: Co-founder of Coursera, Adjunct Professor at Stanford, former Chief Scientist at Baidu.
+        - Focus: AI, Machine Learning, and AI education.
+        - Why Follow: While somewhat generic, Andrew Ng is one of the most influential voices in AI and is known for making AI more accessible to non-experts. He frequently discusses how AI can be applied across various domains, including product management. 
+        - Where: Twitter [@AndrewYNg](https://twitter.com/AndrewYNg), LinkedIn, [deeplearning](https://www.deeplearning.ai/)[.ai](https://www.deeplearning.ai/).
+      - Example Expert - Justin Skycak
+        - Who: "Chief Quant" at mathacademy
+        - Focus: Teaching math efficiently
+        - Why Follow: believes that kids can learn math 4x faster when math curriuclum is broken down into bite-sized pieces and presented to students at the right times. has great insights not just about learning science, but how to apply it to building a efficient math teaching edtech app, mathacademy. 
+        - Where: 
+          - Book the '[math](https://www.justinmath.com/files/the-math-academy-way.pdf)[ ](https://www.justinmath.com/files/the-math-academy-way.pdf)[academy](https://www.justinmath.com/files/the-math-academy-way.pdf)[ ](https://www.justinmath.com/files/the-math-academy-way.pdf)[way](https://www.justinmath.com/files/the-math-academy-way.pdf)' 
+          - [https://www.justinmath.com/](https://www.justinmath.com/)
+          - twitter - @justinskycak 
+      - Example Expert - Dr. Kimberly Berens 
+        - Who: CEO Fit Learning Online, Founder of Fit Learning, author of Blind Spots: Why students fail and the science that can save them.
+        - Focus: Behaviorial Science, Struggling learners
+        - Why Follow:  views learning science as a subset of behaviorial science. Has great insights on applying behavioral science ideas (e.g. fluency, motivation techniques) to get struggling learners to catch up.
+        - Where:
+          - @KimberlyBerens5
+          - [drkimberlyberens.com](https://t.co/oCa7q7Z4ja)
+          - [https://fitlearners.com](https://fitlearners.com/)
+          - book: [Blind Spots](https://a.co/d/6DxzNre)
+      - Example Expert - Siegfried "Zig" Engelmann
+        - Who: "Father" of Direct Instruction. Siegfried "Zig" Engelmann (1931-2019) was a pioneering educator, author, and professor emeritus at the University of Oregon who invented Direct Instruction (DI), an effective, systematic approach to teaching
+        - Focus: Effective Efficient Instruction 
+        - Why Follow: when students fail, it is the fault of the instruction, not the student.  follow zig to learn DI, the most effective way to get knowledge into student's brains.
+        - Where:
+          - [https://psych.athabascau.ca/open/engelmann/bio.php](https://psych.athabascau.ca/open/engelmann/bio.php)
+          - paper: [Theory of Instruction: Principles and Applications](https://www.researchgate.net/publication/303721842_Theory_of_Instruction_Principles_and_Applications#:~:text=Our%20study%20analyzes%20various%20instructional%20approaches)
+    - SpikyPOVs
+      - SpikyPOVs - connecting and adapting insights from BrainLift and prior knowledge and curating them into a prioritized list of SpikyPOVs requires the extended thinking of DOK 4.  
+        - SpikyPOVs are formed by combining and overlapping 2 or more domains
+          - adapting an insight from one domain to a specific problem in another
+        - DOK Level 4: Extended Thinking
+          - Tasks demand complex reasoning over an extended period.
+          - Involves integrating knowledge from multiple sources or areas.
+        - SpikyPOVs go beyond insights.  For example, an insight might tell you what is surprising, and the spikyPOV might combine that insight with others and would make an actionable decision about what we are going to do about it. example:
+          - DOK 1 & 2 - facts: company financial statement facts and summaries
+          - DOK 3 - insight: no correlation between sales spend and growth
+          - DOK 4 - spikyPOV: remove sales teams on acquisition
+      - SpikyPOVs Template
+        - spikyPOVs can be written as either truths or myths
+        - Truths 
+          - What we believe
+          - takes a firm stance where LLMs hold both sides
+          - contradicts and replaces what LLM training says is true
+          - is above and beyond commonly held knowledge
+        - Myths
+          - What we don't believe
+          - commonly held fallacies that you will receive from the internet and LLMs trained on the internet
+        - Truths and Myths are asymmetric - you don't have to have a myth for every truth, or vice versa.
+      - Template SpikyPOVs
+        - Truths
+          - SpikyPOV truth 1
+          - SpikyPOV truth 2
+        - Myths
+          - SpikyPOV myth 1
+          - SpikyPOV myth 2
+      - Example SpikyPOVs - Learning Science SpikyPOVs
+        - Truths
+          - The traditional "teacher-in-front-of-the-classroom" model is one of the worst ways to teach students.  It has been used for 100 years because it was cost effective and allowed school to be provided to everyone.
+          - Learning Science has written papers for 40 years that highlight how bad teacher-in-front-of-the-classroom model performs and presented better solutions that allow students to learn 2x,5x,10x better and faster.
+          - All students can learn 2x in 2hrs per day.  If the student isn't learning then it is the system's fault, not the student's. A true learning system must take responsibility for learning outcomes.
+          - Everything you need to know to teach students 2x in 2hrs per day has already been written about and documented.
+          - Direct Instruction is the fastest way to get information into a student's brain.  Once the basic facts and procedures (DOK levels 1 and 2) are in the student's brain, then add rigor around abstract reasoning, strategic thinking, and transfer (DOK 3 and 4).
+          - Mastery Learning, where students don't move on to more difficult material unless they've mastered the prerequisites, is 2x - 5x more efficient than "conveyor belt" systems that move students ahead in curriculums based on their age.
+          - Motivation is more important than IQ - a motivational program can increase student's learning rate by 3x wheres high IQ vs median IQ only impacts learning on the order of 50%
+          - Extrinsic motivation is commonly seen as inferior to intrinsic.  We see that aggressive extrinsic motivation pushes students through rigorous mastery based learning.  Success with rigorous standards breeds confidence which in turn builds intrinsic motivation.  
+          - Density of learning sits on a continuum. On the far left side, highly motivated students can learn quickly, which is the core of 2hr learning philosophy. On the right hand side is "Edutainment" which tries to use low educational density to overcome a lack of strong motivation
+          - Timed Testing is necessary because some knowledge needs to have "instant" recall so you can use it as a foundation for higher level concepts.  Without automaticity as part of the mastery standard, students spend cognitive load on mental computation that could otherwise be used for higher reasoning (DOK 3 and 4)
+          - Learning a lesson the first time, and then using spaced repetition to combat the forgetting curve is the best way to retain long term
+          - There are differences in student working memory capacity (WMC) that have a measurable impact on learning speed.  Presenting materials that exceed a student's WMC lead to unproductive struggle. We measure student working memory capacity so that we can generate and present materials that do not exceed the student's WMC.  
+          - AI can teach students better than teachers. Its not trivial to do but there are obvious advantages: AI social/emotional/motivational is better than the average teacher, AI is scalable to one on one, AI can remember all student context, interests, academic history, 
+        - Myths
+          - We don't believe that inquiry based learning is a replacement for rote learning.  Inquiry based learning, by itself, is effective for only a small percentage of students who can learn the basics on their own (top 5% of students) and want to start with DOK 3 and DOK 4 type exercises, or AFTER students have learned the basics (DOK 1 and DOK 2).
+          - We don't believe that "rote" learning and "drill and kill" are bad.  These are the fastest ways to get facts and algorithms (DOK 1 and DOK 2) into the brain so that students can work on higher order mastery (DOK 3 and 4)
+          - We don't believe that common core is bad.  Common Core standards describe the knowledge and capabilities that students need. You'll be hard pressed to find any standard that parents don't want their kids to know.
+          - We don't believe standardized testing is bad.
+          - We don't believe that all timed testing is bad.  We believe that some standardized tests should be untimed,  but we believe that some knowledge needs to have "instant" recall so you can use it as a foundation for higher level concepts. (fast math). For example:
+            - it makes no sense for students to start learning multi-digit addition if they don't have 1.5 sec recall on sums to 18.
+            - when basic facts take time and cognitve load, there are more "careless errors" and lack of cognitive ability for higher concepts.
+          - We don't believe that extrinsic motivation is bad - its great for kickstarting a positive feedback cycle of competence and confidence
+    - Knowledge Tree / Categories
+      - Knowledge categories are how you subdivide the domain of the Brainlift into sub topics.  
+        - Categorizing and summarizing sets of source materials into a coherent and easy to understand knowledge tree is DOK 2
+          - DOK Level 2: Skills and Concepts
+            - Tasks require engagement with methods or concepts.
+            - Involves reasoning, organizing, and summarizing information.
+      - A Category is a summary, a set of subcategories or set of sources, and a set of optional insights. 
+      - Sources
+        - Sources are primary source documents.  Creating source material entries by reading source materials, pulling out important facts and filling out forms requires only the recall and reproduction of DOK 1
+          - Sources can be books, papers, articles, tweets, blog posts, diagrams, apps, tools, websites
+          - DOK Level 1: Recall and Reproduction
+            - Tasks require recall of facts or procedures.
+            - Involves following straightforward steps or instructions.
+        - sources have a summary, a link, and optional insights
+        - Example Source - Ms. Sam @sciinthemaking on teaching science w/ inquiry learning
+          - summary
+            - a common misconception is that students should learn science by inquiry learning because that is what expert scientists do, but scientists are experts (not novices), and students are novices and novices need direct explicit instruction.  
+          - link
+            - [https://x.com/sciinthemaking/status/1857870824218439701?s=43&t=--Wxh1KU1EIrDEZl0LAbGA](https://x.com/sciinthemaking/status/1857870824218439701?s=43&t=--Wxh1KU1EIrDEZl0LAbGA)
+          - insights
+            - the misconception "science should be taught with inquiry learning" is an example of the expertise reversal effect
+        - Example Source - WHAT WE ALREADY KNOW DETERMINES WHAT, HOW, AND HOW WELL WE LEARN - Paul A. Kirschner & Mirjam Neelen
+          - summary
+            - what you already know is the most important factor in your rate of learning
+            - prior knowledge is made up of schemas in long term memory that are the structures with "hooks" or "tree branches" to hang new knowledge on
+            - An advance organizer is information presented by an instructor that helps the student organize new incoming information.  It creates hooks for the upcoming lesson information to "hang on"
+            - Ausabel's Assimilation and Subsumption Theory explains the 4 ways that new information can "hook onto" existing prior knowledge schemas
+              - Ausubel’s theory identifies four distinct types of subsumption or assimilation processes that describe how new information is integrated into existing cognitive structures:
+              - Derivative Subsumption 
+                - New information is connected to existing cognitive structures as examples or extensions of already known concepts. For instance, if someone understands the concept of mammals, learning about a new mammal species would be integrated through derivative subsumption, as it represents another example of the existing concept.
+              - Correlative Subsumption
+                - This process involves incorporating new information into higher-order concepts, often modifying or extending the original understanding. The new information not only connects to existing knowledge but also enhances or modifies it. For example, when someone with basic economic knowledge learns about complex financial derivatives, they modify and expand their existing understanding of economics.
+              - Superordinate Subsumption
+                - This type of learning occurs when a new, higher-level concept is introduced that helps organize and integrate previously learned information. It creates an overarching framework that unifies existing knowledge. For instance, when programmers who know various programming languages learn about object-oriented programming, this new paradigm helps organize their previous knowledge under a broader concept.
+              - Combinatorial Subsumption 
+                - This process involves connecting ideas across different higher-level concepts to create new understanding. It enables learners to synthesize knowledge from various domains. A practical example is understanding how animal fur functions as insulation by combining knowledge of physics principles with biological concepts.
+            - 4 different kinds of advance organizers: expository, narrative, skimming and graphic organisers. 
+              - Expository organisers provide descriptions of new knowledge that learners will need to understand what follows and is often used when the new learning material is relatively unknown to the learner by relating the new information to what is already known. 
+              - Narrative organisers present new information in a story format to the learners to activate background knowledge so that learners can make connections to what they know, often creating a personal connection to inspire learning. 
+              - A skimming organiser gives a helicopter overview of the new learning material, focusing on and noting what stands out in the new material such as headings, subheadings, and highlighted information. 
+              - Finally, graphic organisers include different types of visuals such as concept maps, pictographs, Venn diagrams, and so forth.
+          - link
+            - [https://3starlearningexperiences.wordpress.com/2019/05/21/what-we-already-know-determines-what-how-and-how-well-we-learn/](https://3starlearningexperiences.wordpress.com/2019/05/21/what-we-already-know-determines-what-how-and-how-well-we-learn/)
+          - insights
+            - Long term memory organizes knowledge hierarchically in schemas.  
+            - Incept will be great at generating 4 different kinds of advance organizers
+              - diagrams, narratives, skimming, expository
+              - particularly useful for science and history
+              - generateDiagram, generateNarrative, generateSkimming, generateExpository
+              - Athena currently only uses expository organizers in its videos
+              - Heimler videos are good because of his application of Ausabel's assimilation and subsumption theories in creating advance organizers.
+            - The 4 different types of subsumption / assimilations map onto the DOK levels
+              - Derivative Subsumption is DOK 1
+                - adding a fact into an existing category (hydrogen is an element, 5X6=30 is part of the times tables, ...)
+              - Correlative Subsumption is DOK 2
+                - adding a new category to an existing framework and adjusting the framework to account for the new reality
+              - Superordinate Subsumption is DOK 3
+                - adding a higher level schema and reorganizing schemas that were previously independent under one concept heading. "making connections"
+                - Learning Ausabel's Assimilation Theory is an example of a superordinate subsumption.  If you already know that narratives and diagrams help students learn, then assimilation theory, a higher level concept, explains why.
+              - Combinatorial Subsumption is DOK 4
+                - overlapping 2 schemas to make something better than whole.
+                - combining knowledge of generative AI / Incept and Ausabels Assimilation Theory to make incept generate high quality advance organizers of 4 different types is an example of combinatorial subsumption
+            - using ausabel's framework, evaulate instructional videos khan, heimler, athena
+              - athena - nearly all expository (no diagrams, a hint of a story, no skimming)
+              - DI Theory or Instruction - focuses on diagrams and then goes over them with expository voice over - dual-coded (visual, and audio)
+              - would ausabel rate this highly? a story about a diagram is a dual-code advanced organizer covering both diagram and narrative
+      - Insights
+        - Insights are surprising, contrarian, or new learnings. They can come from going deep into a domain with a fresh perspective or from drawing a logical conclusion from one or more sources or categories.
+        - optional Insights can be added at each level of the BrainLift hierarchy: on a category, subcategory, or an individual source
+        - Generating insights by creating frameworks and comparing and contrasting different points of view requires the strategic thinking of DOK 3. 
+          - DOK Level 3: Strategic Thinking
+            - Tasks involve reasoning, planning, and using evidence.
+            - Requires higher-order thinking skills and decision-making.
+      - Categories can be overlapping. 
+        - source documents may be under two different categories
+        - Use links, NOT mirroring, to avoid cutting and pasting and to keep the workflowy simple (mirrors lack a clear "master" location and make BrainLifts too busy).
+      - Template Knowledge Tree / Categories
+        - Category 1  
+          - Summary
+          - Sources
+            - Template Source - Source 1 Name
+              - summary 
+                - summary 
+                - list of important facts
+              - link
+                - link to the source
+              - insights - optional
+                - surprising, contrarian, or new learnings from the source
+            - 
+          - Insights - optional
+            - insight 1
+            - insight 2
+        - Category 2
+          - Summary
+          - Sources
+          - Insights - optional
+            - insight 1
+            - insight 2
+      - Example Knowledge Category - Training LLMs
+        - summary
+          - LLMs can be overridden in the following ways
+            - Fine-Tuning - need lots of training data and investment in one LLM.  lose it all when upgrading to new models so its hard to ride the wave.
+            - RAG - easy to ride the AI wave, but doesn't override as well as Context.
+            - Context - easy to ride the AI wave, overrides better than RAG
+            - Self-evolving LLMs - better than fine-tuning, but hard to ride the wave.
+        - sources
+          - Source - What If LLMs Could Continue Learning?
+            - Summary
+              - Writer is an AI startup company
+              - Self-evolving LLMs learn from past interactions without RAG or finetuning
+            - Link
+              - [https://www.theinformation.com/articles/what-if-llms-could-continue-learning?rc=nn1f8a](https://www.theinformation.com/articles/what-if-llms-could-continue-learning?rc=nn1f8a)
+            - insights
+              - This sounds perfect for training an LLM on our 2nd brain ideas
+              - this will give us another option (on top of fine-tuning and RAG and context packing) for overriding LLMs using BrainLifts
+          - 
+        - insights
+          - use context to override LLM "average" knowledge
+- Examples - Full Brainlifts
+  - [https://workflowy.com/s/vocabulary-instructi/Bhf5eJpMK1YmoCEr](https://workflowy.com/s/vocabulary-instructi/Bhf5eJpMK1YmoCEr)
