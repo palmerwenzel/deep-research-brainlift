@@ -85,7 +85,10 @@ The solution is broken down into three primary components:
   - Perform contextual analyses on the findings.
 
 - **Implementation:**  
-  The MCP wrapper channels the aggregated data to an LLM, which then provides explanatory feedback or further insights.
+    - The MCP wrapper channels aggregated research data to an LLM, enabling interactive dialogue.
+    - Processes research results into explanatory feedback, summaries, and detailed contextual analyses.
+
+- **Conversational Guidance with SpikyPOVs:** The integrated LLM is designed to recognize and leverage "SpikyPOVs." It actively encourages users to form their own opinions by suggesting contrarian perspectives that challenge conventional assumptions—driving deeper inquiry and the discovery of novel insights.
 
 ### Web Frontend Interaction
 

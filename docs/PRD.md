@@ -35,21 +35,21 @@ By focusing on personalized research journeys rather than strict verification, t
 
 ### User Journeys and Workflows
 - **Initial Query Submission:**  
-  A user enters a research topic and configures parameters (breadth and depth). The system begins the research process.
-- **Progress Interaction:**  
-  While research tasks execute, the user follows progress updates, interacts with the agent, and adjusts follow-up questions.
-- **Results Visualization:**  
-  Aggregated research findings are displayed in a clear dashboard, with options to delve into details or initiate LLM-based discussions.
-- **Post-Research Actions:**  
-  Users can save reports, share insights, or annotate findings for team collaboration.
+  The entire research experience is conducted using natural language. Users provide their research topic and configure parameters (such as breadth and depth) via conversational input. The LLM processes these responses to internally set the necessary parameters.
+- **Conversational Interaction:**  
+  The process is designed as a dynamic conversation. As the user interacts with the agent, natural follow-up questions emerge that clarify the research direction and fine-tune the process.
+- **Dynamic Progress Updates:**  
+  The user receives continuous updates on research progress, with opportunities to interject, adjust queries, or explore emerging ideas.
+- **Results Visualization and Aggregation:**  
+  Aggregated outputs from a wide range of sources are presented in a visually structured format, enabling the user to easily compare, review, and extract key learnings.
 
 ### Use Cases
-- **Academic Verification:**  
-  A researcher uses the tool to verify new literature and compile a literature review.
-- **Market Trend Analysis:**  
-  An analyst explores competitor strategies by querying and aggregating diverse market data.
+- **Knowledge Expansion & Creative Exploration:**  
+  The primary use-case is to empower users to dive deep into new subjects, aggregating insights from diverse sources to spark creative thinking and broaden their understanding.
+- **Building a Second Brain:**  
+  Users can leverage the agent as a dynamic repository that tracks and evolves with their learning process—essentially serving as a digital extension of their memory.
 - **Collaborative Exploration:**  
-  A team collaborates on a complex problem, sharing interim reports and engaging in discussions via the integrated LLM interface.
+  While secondary for this iteration, the system supports sharing findings and exchanging ideas, facilitating collaborative research and problem-solving.
 
 ---
 
@@ -88,93 +88,158 @@ By focusing on personalized research journeys rather than strict verification, t
 ## 4. Technical Architecture and Integration Details
 
 ### Architecture Diagram
-*Include a diagram illustrating the components:*
-- Deep Research Module
-- MCP Wrapper / Agent (Direct Module Approach)
-- LLM Integration
-- Web Frontend & API Endpoints
+Include a detailed diagram that illustrates the following components:
+- **Deep Research Module:**  
+  Executes iterative and recursive searches to gather and process research data.
+- **MCP Wrapper / Agent (Direct Module Approach):**  
+  Exposes core research functionalities via API endpoints and orchestrates interactions with external services.
+- **LLM Integration:**  
+  Processes collected data into an interactive conversation and provides nuanced analyses.
+- **Web Frontend & API Endpoints:**  
+  Serves as the interface for user interaction, displaying progress, visualizations, and final reports.
+- **Local Deployment (Cost-Efficient Strategy):**  
+  All components are designed to run locally during early-stage development, avoiding external API costs.
 
 ### Technology Stack
 - **Backend:** Node.js, TypeScript
 - **Frontend:** React, Shadcn, Radix UI, Tailwind CSS
-- **Integration:** Firecrawl API (for deep research), OpenAI API (for LLM interaction)
-- **Orchestration:** Direct module interfacing with asynchronous functions (via async/await)
-  
+- **Integration:**  
+  - **Self-Hosted Firecrawl:**  
+    A local copy of Firecrawl supports our deep research execution, eliminating per-request fees and reliance on external API keys.
+  - **Self-Hosted Searxing:**  
+    We integrate a self-hosted version of Searxing to aggregate search results from multiple engines—providing full control over search operations and avoiding subscription-based costs.
+  - **OpenAI API:**  
+    Utilized for LLM-based dialogue and processing (usage will be optimized and batched where possible).
+- **Orchestration:**  
+  Direct module interfacing with asynchronous processing via async/await.
+- **Cost Considerations:**  
+  By leveraging local deployment for Firecrawl and Searxing, our architecture minimizes external dependencies and cost liabilities during initial development.
+
 ### Data Flow
-1. **User Request:** Research query and parameters are submitted to the backend.
-2. **Processing:** The MCP wrapper triggers the deep research module.
-3. **Aggregation:** Research results are compiled, structured as JSON (or Markdown), and analyzed.
-4. **Display:** Aggregated data is returned to the frontend for visualization and interactive discussion.
+1. **User Request:**  
+   A natural language research query, along with hidden parameter inputs (e.g., breadth, depth), is submitted to the backend.
+2. **Processing:**  
+   The MCP wrapper receives the query, activates the deep research module, and routes search queries to our local instances of Firecrawl and Searxing.
+3. **Aggregation:**  
+   Research outcomes are compiled, structured (as JSON or Markdown), and then analyzed for insights.
+4. **Display:**  
+   Aggregated results are returned to the frontend for dynamic visualization and interactive discussion.
 
 ---
 
 ## 5. Project Roadmap and Milestones
 
-### MVP Features
-- Basic research query submission and parameter setting.
-- Aggregation of research outputs with progress tracking.
-- Visualization dashboard for results.
-- LLM-based interactive dialogue for insights.
+### Roadmap Phases
 
-### Phased Enhancements
-- **Phase 1 (Proof-of-Concept):**  
-  Complete core research and display functionality.
-- **Phase 2:**  
-  Improve asynchronous processing with a lightweight job queue and polling endpoints.
-- **Phase 3:**  
-  Introduce real-time updates (WebSockets/SSE), collaborative features, and enhanced LLM capabilities.
-- **Phase 4 (Future):**  
+1. **Initial Functionality Validation (CLI-based Repository)**
+   - Use the existing forked repo out-of-the-box.
+   - Validate the basic research functionality via the command-line interface.
+   - Confirm that the core research queries and results aggregation are operational.
+
+2. **Local Implementation of Firecrawl**
+   - Transition from API-dependent Firecrawl to a self-hosted local copy.
+   - Eliminate costs associated with external API keys.
+   - Ensure seamless integration between the deep research module and the local Firecrawl.
+
+3. **Frontend Migration for Conversational Interface**
+   - Move from a CLI-only experience to a full-fledged conversational interface.
+   - Leverage our frontend stack—React, Shadcn, Radix UI, and Tailwind CSS—to build an interactive, conversational UI.
+   - Deploy the frontend locally to maintain cost efficiency while supporting natural language interactions.
+
+4. **Expansion of Core Application Features**
+   - Add additional functionalities such as storing research results and aggregating data.
+   - Develop the "second brain" network that tracks and evolves with the user's learning, effectively serving as an extended memory.
+   - Enhance data organization and retrieval to solidify the product’s value proposition.
+
+5. **MCP Integration**
+   - Integrate our MCP (Modular Control Plane) element, enabling functions and endpoints to be called agentically.
+   - Facilitate seamless modular interactions within the system for improved automation and scalability.
+
+6. **Local Implementation of Searxing**
+   - Integrate a self-hosted version of Searxing to enhance the quality and relevance of search results.
+   - Further reduce dependency on external search APIs and associated costs.
+   - Refine the search experience by incorporating more controlled and customizable search parameters.
+
+7. **Advanced Refinements and Additional Services**
+   - Implement any additional options and services to further optimize and refine the product.
+   - Iterate on the system based on user feedback and performance data.
+   - Explore further enhancements as the product scales, ensuring continuous improvement in research output quality.
+
+8. **Future Considerations:**  
   Add knowledge-sharing functionalities, gamification elements, and advanced scalability measures.
-
-### Timeline
-*Outline approximate timelines for each phase (to be refined with the team).*
 
 ---
 
 ## 6. Success Metrics and KPIs
 
 - **Performance Metrics:**  
-  - Average response time for research execution.
-  - System uptime and error rates.
-- **User Engagement:**  
-  - Active user count and session duration.
-  - Frequency of interactive sessions with the LLM.
+  - Average response time for executing research tasks.
+  - System uptime and error rates to ensure consistent performance.
+
 - **Outcome Metrics:**  
-  - User satisfaction ratings in post-session surveys.
-  - Increase in research insight quality (qualitative feedback).
+  - Quality of research outputs, assessed via detailed user surveys and qualitative feedback.
+  - Accuracy and depth of insights in the final reports.
 
 ---
 
 ## 7. Risk Analysis and Mitigation
 
 ### Risks
+
 - **Technical Complexity:**  
-  Asynchronous processing and handling high concurrency might introduce race conditions.
+  Our application involves complex asynchronous processing and high concurrency, which can lead to race conditions and unexpected behavior if not managed carefully.
+
 - **Dependency Reliability:**  
-  Reliance on third-party APIs (e.g., Firecrawl, OpenAI) can affect system performance.
+  While we are favoring self-hosted components (Firecrawl and Searxing) to reduce costs, we still rely on both these and external services (like the OpenAI API). Any instability or changes in these dependencies can negatively affect our system.
+
 - **Scalability:**  
-  Growing data volumes and concurrent processing might impact performance without robust load balancing.
+  The local-first, low-cost deployment is ideal for our MVP, but future growth in data volume or user interactions may require scaling the system. Failure to scale properly could lead to performance degradation.
 
 ### Mitigation Strategies
-- Use established libraries (e.g., pLimit for concurrency, Bull for job queuing) to manage asynchronous flows.
-- Implement fallback mechanisms and circuit breakers for third-party API calls.
-- Monitor system performance continuously and plan for infrastructure scaling.
+
+- **For Technical Complexity:**  
+  - Utilize established libraries (e.g., `p-limit` for managing concurrency and Bull for job queuing) to ensure that asynchronous operations do not interfere with one another.
+  - Implement rigorous automated testing, detailed logging, and monitoring to quickly detect and address issues.
+
+- **For Dependency Reliability:**  
+  - Run critical components like Firecrawl and Searxing locally to maintain control over these services and avoid unexpected costs or downtime.
+  - Build fallback mechanisms and circuit breakers around any external API calls (e.g., OpenAI API) to keep the system resilient even if a dependency fails.
+
+- **For Scalability:**  
+  - Continuously monitor system performance and conduct load testing to identify any potential bottlenecks.
+  - Design the system in a modular way that allows for horizontal scaling when necessary, ensuring that the system can grow in capacity without a complete overhaul.
 
 ---
 
 ## 8. Testing and Quality Assurance
 
 ### Test Plans
-- **Unit Testing:**  
-  For each module (deep research function, MCP wrapper, API endpoints).
-- **Integration Testing:**  
-  Simulate end-to-end flows from query submission to result visualization.
-- **User Acceptance Testing (UAT):**  
-  Validate UX/UI and interactive features with real-world scenarios.
 
-### Performance Testing
-- Stress test the research engine and the MCP endpoints.
-- Simulate high-concurrency loads to ensure the system meets performance benchmarks.
+- **Unit Testing:**  
+  - Focus on core components such as deep research execution, text splitting, and progress management.
+  - Validate key functionality to ensure components behave correctly under expected inputs.
+
+- **Integration Testing:**  
+  - Simulate basic end-to-end flows from natural language query submission to final report generation.
+  - Verify interactions between the CLI (or early frontend) and local services (Firecrawl and Searxing).
+
+- **Performance Testing:**  
+  - Conduct light load testing to ensure typical research sessions complete within acceptable time bounds (aiming for under 60 seconds under normal conditions).
+
+### Quality Assurance Practices
+
+- **Automated Testing:**  
+  - Integrate a basic CI pipeline to run unit and integration tests on each commit.
+  
+- **Code Reviews & Linting:**  
+  - Enforce coding standards using ESLint and Prettier, with regular peer reviews focusing on the critical paths.
+  
+- **Logging and Monitoring:**  
+  - Implement essential logging for asynchronous operations and error handling to quickly diagnose issues during development.
+
+### Summary
+
+For our MVP, this testing strategy ensures that the most critical parts of the application are robust, without overcomplicating the initial development process. As we scale the product, we can expand these practices to cover additional scenarios and performance optimizations.
 
 ---
 
@@ -202,6 +267,3 @@ By focusing on personalized research journeys rather than strict verification, t
   Explore further integrations with data sources, other AI services, and third-party applications to extend functionality.
 
 ---
-
-*Next Steps:*  
-Finalize team roles, confirm technical stack details, and start the implementation of the MVP as per the roadmap. Engage with stakeholders to refine user personas and define success metrics more concretely.
