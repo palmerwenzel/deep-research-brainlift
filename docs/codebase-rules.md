@@ -10,40 +10,49 @@ This document defines our project's folder structure, file naming conventions, a
 
 ## 1. Folder Structure
 
-Our folder structure is designed for clear separation of concerns and high navigability. Below is an example file tree that demonstrates our expected organization:
+Our monorepo structure is designed for clear separation of concerns, high navigability, and scalable development. Below is the expected organization:
 
 ```
 root/
-├── docs/
-│   ├── codebase-best-practices.md     // Guidelines for code organization
-├── src/
-│   ├── components/
-│   │   ├── ui/                        // Reusable UI components (Shadcn themed)
-│   │   │   ├── Button.tsx             // Themed button component
-│   │   │   ├── Input.tsx              // Themed input component
-│   │   │   └── Card.tsx               // Themed card component
-│   │   └── [PageName]/                // Page-specific components
-│   │       ├── Header.tsx             // Page-specific header
-│   │       └── Footer.tsx             // Page-specific footer
-│   ├── deep-research/                 // Deep research module for iterative data discovery
-│   │   └── researchEngine.ts          // Core functions for deep research aggregation
-│   ├── mcp/                         // MCP Wrapper / Agent to orchestrate research tasks
-│   │   └── mcpWrapper.ts              // Exposes research functionality for both UI & external calls
-│   ├── hooks/                         // Custom React hooks
-│   │   └── useQuery.ts
-│   ├── jobs/                          // Job queue management (e.g., BullMQ integration)
-│   │   └── queueHandler.ts
-│   ├── pages/                         // Next.js pages and API endpoints
-│   │   ├── index.tsx                  // Landing page: research query input & dashboard
-│   │   └── api/
-│   │       └── research.ts            // API route for handling research requests
-│   ├── state/                         // Global state management using Zustand
-│   │   └── researchStore.ts
-│   ├── styles/                        // Global styles and Tailwind configuration
-│   │   └── tailwind.css
-│   └── utils/                         // Utility functions and helpers
-│       └── helpers.ts
-└── package.json                       // Project metadata and dependencies
+├── apps/                              // Deployable applications
+│   ├── web/                          // Next.js frontend
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── ui/              // Reusable UI components (Shadcn themed)
+│   │   │   │   └── [PageName]/      // Page-specific components
+│   │   │   ├── app/                 // Next.js App Router pages
+│   │   │   ├── hooks/               // Custom React hooks
+│   │   │   ├── lib/                 // Utility functions
+│   │   │   └── styles/              // Global styles
+│   │   └── package.json             // Web app dependencies
+│   └── api/                         // Backend API service
+│       ├── src/
+│       │   ├── routes/              // API routes
+│       │   └── middleware/          // API middleware
+│       └── package.json             // API dependencies
+├── packages/                         // Shared internal packages
+│   ├── deep-research/               // Core research engine
+│   │   ├── src/
+│   │   │   └── engine/             // Research engine implementation
+│   │   └── package.json
+│   ├── mcp/                        // MCP wrapper for orchestration
+│   │   ├── src/
+│   │   │   └── wrapper/            // MCP implementation
+│   │   └── package.json
+│   └── shared/                     // Shared utilities and types
+│       ├── src/
+│       │   ├── types/              // Shared TypeScript types
+│       │   └── utils/              // Shared utility functions
+│       └── package.json
+├── services/                        // Local infrastructure
+│   ├── firecrawl/                  // Self-hosted Firecrawl
+│   └── searxing/                   // Self-hosted Searxing
+├── docs/                           // Project documentation
+│   ├── codebase-rules.md
+│   ├── theme-guide.md
+│   └── implementation.md
+├── package.json                    // Root package.json for monorepo
+└── pnpm-workspace.yaml            // PNPM workspace configuration
 ```
 
 ---
@@ -93,7 +102,7 @@ root/
 
 ### File-Level Documentation
 - **Header Comments:**  
-  Every file must start with a header comment block that explains the file’s purpose, content, and any important usage notes.
+  Every file must start with a header comment block that explains the file's purpose, content, and any important usage notes.
   
   Example for a TypeScript file:
   ```ts

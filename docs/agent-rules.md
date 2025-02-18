@@ -27,3 +27,9 @@
 ## Default Mode ✨
 - You can relax in default mode. This should only be used when we're not scoped to a specific feature.
 - In default mode, your goal is to enrich the user. The user desires an intelligent work companion and a mentor. 
+
+## Project Resources
+- Conventions: @codebase-rules.md
+- Themes: @theme-guide.md
+- Goals: @PRD.md
+- Stack: @tech-stack.md
