@@ -50,7 +50,7 @@ Each persona may emphasize different parts of the journey, yet the overall flow 
   - The direct module approach allows for efficient, asynchronous function calls to the research engine.
 
 - **Iterative Research Process:**  
-  - The deep research module conducts iterative and recursive searches using self-hosted services (e.g., Firecrawl and Searxing).
+  - The deep research module conducts iterative and recursive searches using self-hosted services (e.g., Firecrawl and Searxng).
   - The process aggregates insights from various sources and continuously validates emerging data.
 
 - **Progress Updates:**  

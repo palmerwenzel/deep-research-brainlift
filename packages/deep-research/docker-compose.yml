@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   deep-research:
     container_name: deep-research
@@ -5,6 +7,22 @@ services:
     env_file:
       - .env.local
     volumes:
-      -  ./:/app/
+      - ./:/app/
     tty: true
     stdin_open: true
+    depends_on:
+      - firecrawl
+
+  firecrawl:
+    container_name: firecrawl
+    image: mendableai/firecrawl:latest
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - NODE_ENV=development
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

@@ -5,6 +5,7 @@ import pLimit from 'p-limit';
 import { z } from 'zod';
 
 import { o3MiniModel, trimPrompt } from './ai/providers';
+import { config } from './config';
 import { systemPrompt } from './prompt';
 import { OutputManager } from './output-manager';
 
@@ -26,7 +27,7 @@ export type ResearchProgress = {
   completedQueries: number;
 };
 
-type ResearchResult = {
+export type ResearchResult = {
   learnings: string[];
   visitedUrls: string[];
 };
@@ -34,12 +35,26 @@ type ResearchResult = {
 // increase this if you have higher API rate limits
 const ConcurrencyLimit = 2;
 
-// Initialize Firecrawl with optional API key and optional base url
-
+// Initialize Firecrawl with configuration
 const firecrawl = new FirecrawlApp({
-  apiKey: process.env.FIRECRAWL_KEY ?? '',
-  apiUrl: process.env.FIRECRAWL_BASE_URL,
+  apiKey: config.firecrawl.apiKey,
+  apiUrl: config.firecrawl.baseUrl,
 });
+
+// Error types for better error handling
+export class FirecrawlError extends Error {
+  constructor(message: string, public readonly cause?: unknown) {
+    super(message);
+    this.name = 'FirecrawlError';
+  }
+}
+
+export class ResearchError extends Error {
+  constructor(message: string, public readonly cause?: unknown) {
+    super(message);
+    this.name = 'ResearchError';
+  }
+}
 
 // take en user query, return a list of SERP queries
 async function generateSerpQueries({
@@ -49,41 +64,50 @@ async function generateSerpQueries({
 }: {
   query: string;
   numQueries?: number;
-
-  // optional, if provided, the research will continue from the last learning
   learnings?: string[];
-}) {
-  const res = await generateObject({
-    model: o3MiniModel,
-    system: systemPrompt(),
-    prompt: `Given the following prompt from the user, generate a list of SERP queries to research the topic. Return a maximum of ${numQueries} queries, but feel free to return less if the original prompt is clear. Make sure each query is unique and not similar to each other: <prompt>${query}</prompt>\n\n${
-      learnings
-        ? `Here are some learnings from previous research, use them to generate more specific queries: ${learnings.join(
-            '\n',
-          )}`
-        : ''
-    }`,
-    schema: z.object({
-      queries: z
-        .array(
-          z.object({
-            query: z.string().describe('The SERP query'),
-            researchGoal: z
-              .string()
-              .describe(
-                'First talk about the goal of the research that this query is meant to accomplish, then go deeper into how to advance the research once the results are found, mention additional research directions. Be as specific as possible, especially for additional research directions.',
-              ),
-          }),
-        )
-        .describe(`List of SERP queries, max of ${numQueries}`),
-    }),
-  });
-  log(
-    `Created ${res.object.queries.length} queries`,
-    res.object.queries,
-  );
+}): Promise<Array<{ query: string; researchGoal: string }>> {
+  try {
+    const res = await generateObject({
+      model: o3MiniModel,
+      system: systemPrompt(),
+      prompt: `Given the following prompt from the user, generate a list of SERP queries to research the topic. Return a maximum of ${numQueries} queries, but feel free to return less if the original prompt is clear. Make sure each query is unique and not similar to each other: <prompt>${query}</prompt>\n\n${
+        learnings
+          ? `Here are some learnings from previous research, use them to generate more specific queries: ${learnings.join(
+              '\n',
+            )}`
+          : ''
+      }`,
+      schema: z.object({
+        queries: z
+          .array(
+            z.object({
+              query: z.string().describe('The SERP query'),
+              researchGoal: z
+                .string()
+                .describe(
+                  'First talk about the goal of the research that this query is meant to accomplish, then go deeper into how to advance the research once the results are found, mention additional research directions. Be as specific as possible, especially for additional research directions.',
+                ),
+            }),
+          )
+          .describe(`List of SERP queries, max of ${numQueries}`),
+      }),
+    });
 
-  return res.object.queries.slice(0, numQueries);
+    log(
+      `Created ${res.object.queries.length} queries`,
+      res.object.queries,
+    );
+
+    return res.object.queries.slice(0, numQueries);
+  } catch (error) {
+    throw new ResearchError('Failed to generate SERP queries', error);
+  }
+}
+
+export interface ProcessedResult {
+  learnings: string[];
+  followUpQuestions: string[];
+  visitedUrls: string[];
 }
 
 async function processSerpResult({
@@ -96,36 +120,48 @@ async function processSerpResult({
   result: SearchResponse;
   numLearnings?: number;
   numFollowUpQuestions?: number;
-}) {
-  const contents = compact(result.data.map(item => item.markdown)).map(
-    content => trimPrompt(content, 25_000),
-  );
-  log(`Ran ${query}, found ${contents.length} contents`);
+}): Promise<ProcessedResult> {
+  try {
+    const contents = compact(result.data.map(item => item.markdown)).map(
+      content => trimPrompt(content),
+    );
 
-  const res = await generateObject({
-    model: o3MiniModel,
-    abortSignal: AbortSignal.timeout(60_000),
-    system: systemPrompt(),
-    prompt: `Given the following contents from a SERP search for the query <query>${query}</query>, generate a list of learnings from the contents. Return a maximum of ${numLearnings} learnings, but feel free to return less if the contents are clear. Make sure each learning is unique and not similar to each other. The learnings should be concise and to the point, as detailed and information dense as possible. Make sure to include any entities like people, places, companies, products, things, etc in the learnings, as well as any exact metrics, numbers, or dates. The learnings will be used to research the topic further.\n\n<contents>${contents
-      .map(content => `<content>\n${content}\n</content>`)
-      .join('\n')}</contents>`,
-    schema: z.object({
-      learnings: z
-        .array(z.string())
-        .describe(`List of learnings, max of ${numLearnings}`),
-      followUpQuestions: z
-        .array(z.string())
-        .describe(
-          `List of follow-up questions to research the topic further, max of ${numFollowUpQuestions}`,
-        ),
-    }),
-  });
-  log(
-    `Created ${res.object.learnings.length} learnings`,
-    res.object.learnings,
-  );
+    if (contents.length === 0) {
+      throw new ResearchError('No valid content found in search results');
+    }
 
-  return res.object;
+    const res = await generateObject({
+      model: o3MiniModel,
+      system: systemPrompt(),
+      prompt: `Given the following search results for the query "${query}", extract exactly ${numLearnings} key learnings and generate exactly ${numFollowUpQuestions} follow-up questions:\n\n${contents.join(
+        '\n---\n',
+      )}`,
+      schema: z.object({
+        learnings: z
+          .array(z.string())
+          .describe(
+            'Key learnings from the search results. Be specific and detailed.',
+          ),
+        followUpQuestions: z
+          .array(z.string())
+          .describe(
+            'Follow-up questions to explore based on the learnings. Make these specific and targeted.',
+          ),
+      }),
+    });
+
+    // Post-process to ensure we don't exceed the limits
+    return {
+      learnings: res.object.learnings.slice(0, numLearnings),
+      followUpQuestions: res.object.followUpQuestions.slice(0, numFollowUpQuestions),
+      visitedUrls: compact(result.data.map(item => item.url)),
+    };
+  } catch (error) {
+    if (error instanceof ResearchError) {
+      throw error;
+    }
+    throw new ResearchError('Failed to process search results', error);
+  }
 }
 
 export async function writeFinalReport({

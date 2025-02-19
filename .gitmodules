@@ -1,0 +1,6 @@
+[submodule "services/firecrawl"]
+	path = services/firecrawl
+	url = https://github.com/mendableai/firecrawl.git
+[submodule "services/searxng"]
+	path = services/searxng
+	url = https://github.com/searxng/searxng.git

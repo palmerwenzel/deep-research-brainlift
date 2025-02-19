@@ -106,20 +106,20 @@ Include a detailed diagram that illustrates the following components:
 - **Integration:**  
   - **Self-Hosted Firecrawl:**  
     A local copy of Firecrawl supports our deep research execution, eliminating per-request fees and reliance on external API keys.
-  - **Self-Hosted Searxing:**  
-    We integrate a self-hosted version of Searxing to aggregate search results from multiple engines—providing full control over search operations and avoiding subscription-based costs.
+  - **Self-Hosted Searxng:**  
+    We integrate a self-hosted version of Searxng to aggregate search results from multiple engines—providing full control over search operations and avoiding subscription-based costs.
   - **OpenAI API:**  
     Utilized for LLM-based dialogue and processing (usage will be optimized and batched where possible).
 - **Orchestration:**  
   Direct module interfacing with asynchronous processing via async/await.
 - **Cost Considerations:**  
-  By leveraging local deployment for Firecrawl and Searxing, our architecture minimizes external dependencies and cost liabilities during initial development.
+  By leveraging local deployment for Firecrawl and Searxng, our architecture minimizes external dependencies and cost liabilities during initial development.
 
 ### Data Flow
 1. **User Request:**  
    A natural language research query, along with hidden parameter inputs (e.g., breadth, depth), is submitted to the backend.
 2. **Processing:**  
-   The MCP wrapper receives the query, activates the deep research module, and routes search queries to our local instances of Firecrawl and Searxing.
+   The MCP wrapper receives the query, activates the deep research module, and routes search queries to our local instances of Firecrawl and Searxng.
 3. **Aggregation:**  
    Research outcomes are compiled, structured (as JSON or Markdown), and then analyzed for insights.
 4. **Display:**  
@@ -155,8 +155,8 @@ Include a detailed diagram that illustrates the following components:
    - Integrate our MCP (Modular Control Plane) element, enabling functions and endpoints to be called agentically.
    - Facilitate seamless modular interactions within the system for improved automation and scalability.
 
-6. **Local Implementation of Searxing**
-   - Integrate a self-hosted version of Searxing to enhance the quality and relevance of search results.
+6. **Local Implementation of Searxng**
+   - Integrate a self-hosted version of Searxng to enhance the quality and relevance of search results.
    - Further reduce dependency on external search APIs and associated costs.
    - Refine the search experience by incorporating more controlled and customizable search parameters.
 
@@ -190,7 +190,7 @@ Include a detailed diagram that illustrates the following components:
   Our application involves complex asynchronous processing and high concurrency, which can lead to race conditions and unexpected behavior if not managed carefully.
 
 - **Dependency Reliability:**  
-  While we are favoring self-hosted components (Firecrawl and Searxing) to reduce costs, we still rely on both these and external services (like the OpenAI API). Any instability or changes in these dependencies can negatively affect our system.
+  While we are favoring self-hosted components (Firecrawl and Searxng) to reduce costs, we still rely on both these and external services (like the OpenAI API). Any instability or changes in these dependencies can negatively affect our system.
 
 - **Scalability:**  
   The local-first, low-cost deployment is ideal for our MVP, but future growth in data volume or user interactions may require scaling the system. Failure to scale properly could lead to performance degradation.
@@ -202,7 +202,7 @@ Include a detailed diagram that illustrates the following components:
   - Implement rigorous automated testing, detailed logging, and monitoring to quickly detect and address issues.
 
 - **For Dependency Reliability:**  
-  - Run critical components like Firecrawl and Searxing locally to maintain control over these services and avoid unexpected costs or downtime.
+  - Run critical components like Firecrawl and Searxng locally to maintain control over these services and avoid unexpected costs or downtime.
   - Build fallback mechanisms and circuit breakers around any external API calls (e.g., OpenAI API) to keep the system resilient even if a dependency fails.
 
 - **For Scalability:**  
@@ -221,7 +221,7 @@ Include a detailed diagram that illustrates the following components:
 
 - **Integration Testing:**  
   - Simulate basic end-to-end flows from natural language query submission to final report generation.
-  - Verify interactions between the CLI (or early frontend) and local services (Firecrawl and Searxing).
+  - Verify interactions between the CLI (or early frontend) and local services (Firecrawl and Searxng).
 
 - **Performance Testing:**  
   - Conduct light load testing to ensure typical research sessions complete within acceptable time bounds (aiming for under 60 seconds under normal conditions).

@@ -46,7 +46,7 @@ root/
 │       └── package.json
 ├── services/                        // Local infrastructure
 │   ├── firecrawl/                  // Self-hosted Firecrawl
-│   └── searxing/                   // Self-hosted Searxing
+│   └── searxng/                   // Self-hosted Searxng
 ├── docs/                           // Project documentation
 │   ├── codebase-rules.md
 │   ├── theme-guide.md
