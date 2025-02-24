@@ -99,10 +99,10 @@ FIRECRAWL_KEY="your_firecrawl_key"
 # If you want to use your self-hosted Firecrawl, add the following below:
 # FIRECRAWL_BASE_URL="http://localhost:3002"
 
-OPENAI_KEY="your_openai_key"
+OPENAI_API_KEY="your_OPENAI_API_KEY"
 ```
 
-To use local LLM, comment out `OPENAI_KEY` and instead uncomment `OPENAI_ENDPOINT` and `OPENAI_MODEL`:
+To use local LLM, comment out `OPENAI_API_KEY` and instead uncomment `OPENAI_ENDPOINT` and `OPENAI_MODEL`:
 - Set `OPENAI_ENDPOINT` to the address of your local server (eg."http://localhost:1234/v1")
 - Set `OPENAI_MODEL` to the name of the model loaded in your local server.
 

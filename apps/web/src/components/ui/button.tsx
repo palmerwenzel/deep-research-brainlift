@@ -9,10 +9,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: [
-          "bg-background/80 text-foreground/90 border border-border/50 backdrop-blur-[1px]",
-          "hover:bg-accent/5 hover:border-accent/30 hover:text-accent-foreground hover:shadow-sm",
-          "active:bg-accent/10 active:border-accent/40",
-          "dark:bg-background/50 dark:text-foreground/80 dark:hover:bg-accent/10",
+          "bg-primary/20 text-foreground border border-border/80",
+          "hover:bg-primary/30 hover:border-primary/30 hover:text-primary hover:shadow-sm",
+          "active:bg-primary/40 active:border-primary/40",
+          "dark:bg-background/80 dark:text-foreground dark:hover:bg-primary/10",
           "transition-all duration-200",
         ].join(" "),
         primary: [

@@ -7,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pnpm -r build",
-    "dev": "pnpm -r dev",
+    "dev": "pnpm dev:services && pnpm --filter @deep-research-brainlift/web dev",
+    "dev:services": "./scripts/dev-setup.sh",
+    "dev:stop": "docker-compose -f docker-compose.dev.yml down",
     "lint": "pnpm -r lint",
     "clean": "pnpm -r clean"
   },

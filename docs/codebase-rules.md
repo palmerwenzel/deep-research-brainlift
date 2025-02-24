@@ -19,7 +19,7 @@ root/
 │   │   ├── src/
 │   │   │   ├── components/
 │   │   │   │   ├── ui/              // Reusable UI components (Shadcn themed)
-│   │   │   │   └── [PageName]/      // Page-specific components
+│   │   │   │   └── [component-name]/      // Page-specific components
 │   │   │   ├── app/                 // Next.js App Router pages
 │   │   │   ├── hooks/               // Custom React hooks
 │   │   │   ├── lib/                 // Utility functions
@@ -50,7 +50,7 @@ root/
 ├── docs/                           // Project documentation
 │   ├── codebase-rules.md
 │   ├── theme-guide.md
-│   └── implementation.md
+│   └── current-task.md
 ├── package.json                    // Root package.json for monorepo
 └── pnpm-workspace.yaml            // PNPM workspace configuration
 ```

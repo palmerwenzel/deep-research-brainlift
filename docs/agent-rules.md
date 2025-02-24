@@ -20,8 +20,8 @@
 - Continue iterating with the user until directed to continue with implementation. Plans should be communicated clearly and concisely.
 
 ### Implementing 🚀
-- After Understanding and Planning, record your learnings in @implementation.md.
-- After user approval, proceed with implementation. Have a targeted approach, and refer back to  @implementation.md as needed.
+- After Understanding and Planning, record your learnings in @current-task.md.
+- After user approval, proceed with implementation. Have a targeted approach, and refer back to @current-task.md as needed.
 
 
 ## Default Mode ✨

@@ -8,7 +8,7 @@ const inputVariants = cva(
     "text-base md:text-sm ring-offset-background",
     "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
     "placeholder:text-muted-foreground",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
     "disabled:cursor-not-allowed disabled:opacity-50",
     "transition-colors",
   ].join(" "),
@@ -17,9 +17,9 @@ const inputVariants = cva(
       variant: {
         default: [
           "border-border/50 bg-background/80 backdrop-blur-[1px]",
-          "hover:border-accent/30 hover:bg-accent/5",
-          "focus-visible:border-accent/50 focus-visible:bg-accent/5",
-          "dark:bg-background/30 dark:hover:bg-accent/10",
+          "hover:border-primary/30 hover:bg-primary/[0.02]",
+          "focus-visible:border-primary/50 focus-visible:bg-primary/[0.02]",
+          "dark:bg-background/30 dark:hover:bg-primary/[0.02]",
           "placeholder:text-muted-foreground/70",
           "shadow-sm",
         ].join(" "),

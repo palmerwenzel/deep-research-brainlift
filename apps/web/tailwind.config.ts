@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import { Config } from 'tailwindcss'
+import { fontFamily } from "tailwindcss/defaultTheme"
+import plugin from "tailwindcss/plugin"
 
 const config: Config = {
   darkMode: ["class"],
@@ -19,28 +21,31 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // Basic shared color tokens, referencing the updated variables in globals.css
         border: {
           DEFAULT: "hsl(var(--border))",
           foreground: "hsl(var(--border-foreground))",
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        // Primary should be a bold, saturated "blue"
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        // Secondary is a supportive adjacent "purple"
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
+        // Accent for special highlights or cta
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        
+        // Supporting feedback colors
         success: {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
@@ -57,6 +62,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--info))",
           foreground: "hsl(var(--info-foreground))",
         },
+        // Card & popover tokens
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -66,22 +72,30 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         ring: "hsl(var(--ring))",
+        input: "hsl(var(--input))",
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(to right, hsl(var(--gradient-start)), hsl(var(--gradient-end)))',
-        'gradient-amber': 'linear-gradient(to right, hsl(35 92% 51%), hsl(35 92% 65%))',
-        'gradient-purple': 'linear-gradient(to right, hsl(258 90% 66%), hsl(258 90% 73%))',
-        'gradient-blue': 'linear-gradient(to right, hsl(221 84% 53%), hsl(221 84% 60%))',
-        'gradient-primary-vertical': 'linear-gradient(to bottom, hsl(var(--gradient-start)), hsl(var(--gradient-end)))',
-        'gradient-primary-diagonal': 'linear-gradient(45deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)))',
-        'gradient-primary-radial': 'radial-gradient(circle at center, hsl(var(--gradient-start)), hsl(var(--gradient-end)))',
-        'gradient-primary-conic': 'conic-gradient(from 0deg at center, hsl(var(--gradient-start)), hsl(var(--gradient-end)))',
-        'background-gradient': 'var(--background-gradient)',
+        "gradient-primary": "linear-gradient(to right, hsl(var(--gradient-start)), hsl(var(--gradient-end)))",
+        "gradient-amber": "linear-gradient(to right, hsl(35 92% 51%), hsl(35 92% 65%))",
+        "gradient-purple": "linear-gradient(to right, hsl(258 90% 66%), hsl(258 90% 73%))",
+        "gradient-blue": "linear-gradient(to right, hsl(221 84% 53%), hsl(221 84% 60%))",
+        "gradient-primary-vertical": "linear-gradient(to bottom, hsl(var(--gradient-start)), hsl(var(--gradient-end)))",
+        "gradient-primary-diagonal": "linear-gradient(45deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)))",
+        "gradient-primary-radial": "radial-gradient(circle at center, hsl(var(--gradient-start)), hsl(var(--gradient-end)))",
+        "gradient-primary-conic": "conic-gradient(from 0deg at center, hsl(var(--gradient-start)), hsl(var(--gradient-end)))",
+        "background-gradient": "var(--background-gradient)",
       },
       keyframes: {
         "accordion-down": {
@@ -140,7 +154,13 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(({ addVariant }) => {
+      addVariant("radix-side-top", '&[data-side="top"]')
+      addVariant("radix-side-bottom", '&[data-side="bottom"]')
+    }),
+  ],
 } as const;
 
 export default config;

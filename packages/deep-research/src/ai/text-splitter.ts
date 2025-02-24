@@ -96,6 +96,11 @@ export class RecursiveCharacterTextSplitter
   }
 
   splitText(text: string): string[] {
+    // Validate chunk size and overlap
+    if (this.chunkOverlap >= this.chunkSize) {
+      throw new Error('Cannot have chunkOverlap >= chunkSize');
+    }
+
     const finalChunks: string[] = [];
 
     // Get appropriate separator to use
@@ -138,6 +143,31 @@ export class RecursiveCharacterTextSplitter
       const mergedText = this.mergeSplits(goodSplits, separator);
       finalChunks.push(...mergedText);
     }
-    return finalChunks;
+
+    // Ensure all chunks are exactly chunkSize (except possibly the last one)
+    const result: string[] = [];
+    let currentChunk = '';
+    for (const chunk of finalChunks) {
+      if (!chunk.trim()) continue;
+      
+      if (currentChunk.length + chunk.length <= this.chunkSize) {
+        currentChunk += (currentChunk ? separator : '') + chunk;
+      } else {
+        if (currentChunk) {
+          result.push(currentChunk);
+          currentChunk = chunk;
+        } else {
+          // If a single chunk is larger than chunkSize, split it
+          for (let i = 0; i < chunk.length; i += this.chunkSize) {
+            result.push(chunk.slice(i, i + this.chunkSize));
+          }
+        }
+      }
+    }
+    if (currentChunk) {
+      result.push(currentChunk);
+    }
+
+    return result;
   }
 }

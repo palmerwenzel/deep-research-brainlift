@@ -1,0 +1,125 @@
+version: '3.8'
+name: deep-research-dev
+
+x-common-firecrawl: &common-firecrawl
+  ulimits:
+    nofile:
+      soft: 65535
+      hard: 65535
+  environment: &common-firecrawl-env
+    REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+    REDIS_RATE_LIMIT_URL: ${REDIS_URL:-redis://redis:6379}
+    PLAYWRIGHT_MICROSERVICE_URL: ${PLAYWRIGHT_MICROSERVICE_URL:-http://playwright-service:3000}
+    PORT: ${PORT:-3002}
+    NUM_WORKERS_PER_QUEUE: ${NUM_WORKERS_PER_QUEUE:-2}
+    OPENAI_API_KEY: ${OPENAI_API_KEY}
+    OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+    OPENAI_BASE_URL: ${OPENAI_BASE_URL}
+    MODEL_NAME: ${MODEL_NAME:-gpt-4o-mini}
+    USE_DB_AUTHENTICATION: ${USE_DB_AUTHENTICATION}
+    SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+    LLAMAPARSE_API_KEY: ${LLAMAPARSE_API_KEY}
+    LOGTAIL_KEY: ${LOGTAIL_KEY}
+    BULL_AUTH_KEY: ${BULL_AUTH_KEY}
+    TEST_API_KEY: ${TEST_API_KEY}
+    POSTHOG_API_KEY: ${POSTHOG_API_KEY}
+    POSTHOG_HOST: ${POSTHOG_HOST}
+    SUPABASE_ANON_TOKEN: ${SUPABASE_ANON_TOKEN}
+    SUPABASE_URL: ${SUPABASE_URL}
+    SUPABASE_SERVICE_TOKEN: ${SUPABASE_SERVICE_TOKEN}
+    SCRAPING_BEE_API_KEY: ${SCRAPING_BEE_API_KEY}
+    HOST: ${HOST:-0.0.0.0}
+    SELF_HOSTED_WEBHOOK_URL: ${SELF_HOSTED_WEBHOOK_URL}
+    SERPER_API_KEY: ${SERPER_API_KEY}
+    SEARCHAPI_API_KEY: ${SEARCHAPI_API_KEY}
+    LOGGING_LEVEL: ${LOGGING_LEVEL}
+    SEARXNG_URL: http://searxng:8080
+    SEARCH_PROVIDER: searxng
+  networks:
+    - backend
+    - deep_research_network
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+services:
+  # Firecrawl Services
+  playwright-service:
+    build: 
+      context: services/firecrawl/apps/playwright-service
+    environment:
+      PORT: 3000
+      BLOCK_MEDIA: true
+      PROXY_SERVER: ${PROXY_SERVER}
+      PROXY_USERNAME: ${PROXY_USERNAME}
+      PROXY_PASSWORD: ${PROXY_PASSWORD}
+    networks:
+      - backend
+      - deep_research_network
+
+  firecrawl:
+    build:
+      context: services/firecrawl/apps/api
+    <<: *common-firecrawl
+    depends_on:
+      - redis
+      - playwright-service
+    ports:
+      - "3002:3002"
+    command: [ "pnpm", "run", "start:production" ]
+
+  worker:
+    build:
+      context: services/firecrawl/apps/api
+    <<: *common-firecrawl
+    environment:
+      <<: *common-firecrawl-env
+      FLY_PROCESS_GROUP: worker
+    depends_on:
+      - redis
+      - playwright-service
+      - firecrawl
+    command: [ "pnpm", "run", "workers" ]
+
+  redis:
+    image: redis:alpine
+    networks:
+      - backend
+      - deep_research_network
+    command: redis-server --bind 0.0.0.0
+    volumes:
+      - redis_data:/data
+
+  # SearXNG Service
+  searxng:
+    image: searxng/searxng:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./services/searxng/config:/etc/searxng:rw
+    environment:
+      INSTANCE_NAME: deep-research-searxng
+      SEARXNG_BASE_URL: http://localhost:8080/
+      SEARXNG_HOSTNAME: 0.0.0.0
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      - deep_research_network
+    restart: unless-stopped
+
+networks:
+  backend:
+  deep_research_network:
+    external: true
+
+volumes:
+  redis_data: 

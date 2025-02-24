@@ -2,39 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* NEW TARGET COLORS
+39 68% 69% (Gold)
+Black
+White
+*/
+
+
 @layer base {
   :root {
-    /* Main Colors - Gradient */
-    --gradient-start: 221 84% 53%;      /* #2563EB - Blue */
-    --gradient-end: 258 90% 66%;        /* #8B5CF6 - Purple */
+    /* 
+      Updated to emphasize a blue-to-purple brand color sequence, 
+      with clearly defined primary/secondary/accent roles
+    */
     
-    /* Border Colors */
-    --border: 220 13% 91%;             /* #E5E7EB */
-    --border-foreground: 222 47% 11%;   /* #1F2937 */
+    /* Gradients should fade from a bold blue (#2563EB) to a rich purple (#8B5CF6) */
+    --gradient-start: 221 84% 55%;    /* #2563EB */
+    --gradient-end: 258 90% 66%;      /* #8B5CF6 */
+
+    /* Primary is a stronger blue. Secondary is the supportive purple. Accent for special highlights. */
+    --primary: 221 84% 55%;          /* #2563EB */
+    --primary-foreground: 210 40% 98%; /* #F8FAFC */
     
-    /* Accent Colors */
-    --accent: 265 90% 70%;             /* #A05CFF - Brighter Rich Violet */
-    --accent-foreground: 220 13% 15%;   /* Dark gray for contrast */
+    --secondary: 258 90% 66%;        /* #8B5CF6 */
+    --secondary-foreground: 210 40% 98%; /* #F8FAFC */
     
-    /* Neutrals & Backgrounds */
-    --background: 0 0% 100%;          /* White base */
-    --background-gradient: linear-gradient(180deg,
-      hsl(0 0% 100%) 0%,             /* Pure white */
-      hsl(265 90% 70% / 0.08) 15%,   /* Start transition */
-      hsl(265 90% 70% / 0.15) 35%,   /* Build intensity */
-      hsl(265 90% 70% / 0.25) 75%    /* Full intensity */
+    --accent: 260 94% 66%;           /* #9B5CFD - a vivid purple accent */
+    --accent-foreground: 210 40% 98%; /* #F8FAFC */
+    
+    /* Base neutrals */
+    --background: 0 0% 100%;         /* #FFFFFF */
+    --background-gradient: linear-gradient(
+      180deg,
+      hsl(0 0% 100%) 0%,             /* White */
+      hsl(221 84% 55% / 0.08) 15%,    /* Subtle brand */
+      hsl(258 90% 66% / 0.15) 35%,    /* Build intensity */
+      hsl(258 90% 66% / 0.25) 75%     /* Fully tinted near bottom */
     );
-    --foreground: 222 47% 11%;         /* #1F2937 */
-    --card: 0 0% 100%;                 /* #FFFFFF */
-    --card-foreground: 222 47% 11%;    /* #1F2937 */
-    --popover: 0 0% 100%;              /* #FFFFFF */
+    --foreground: 222 47% 11%;       /* #1F2937 */
+
+    /* Card & popover neutral layers */
+    --card: 228 67% 98%;             /* #F8F9FC */
+    --card-foreground: 222 47% 11%;  /* #1F2937 */
+    --popover: 228 67% 98%;          /* #F8F9FC */
     --popover-foreground: 222 47% 11%; /* #1F2937 */
+
+    /* Borders remain neutral with slight brand hints */
+    --border: 220 13% 91%;             /* #E5E7EB */
+    --border-foreground: 222 47% 11%;  /* #1F2937 */
     
-    /* Text Colors */
-    --muted: 215 16% 47%;             /* #64748B */
-    --muted-foreground: 215 20% 65%;  /* #94A3B8 */
+    /* Muted text usage */
+    --muted: 270 100% 89%;             /* #EDC8FF */
+    --muted-foreground: 215 20% 65%;  /* #F6E3FF */
     
-    /* Feedback Colors */
+    /* Feedback colors - can maintain these as is or tweak for harmony */
     --success: 142 76% 36%;           /* #22C55E */
     --success-foreground: 210 40% 98%; /* #F8FAFC */
     --warning: 38 92% 50%;            /* #F59E0B */
@@ -44,63 +65,55 @@
     --info: 217 91% 60%;              /* #3B82F6 */
     --info-foreground: 210 40% 98%;    /* #F8FAFC */
 
-    /* Component Specific */
-    --primary: 221 84% 53%;           /* #2563EB - Blue */
-    --primary-foreground: 210 40% 98%; /* #F8FAFC */
-    --secondary: 221 84% 98%;         /* Super light blue */
-    --secondary-foreground: 221 84% 53%; /* Blue */
+    /* Ring references accent color */
     --ring: var(--accent);
-    
-    /* Component Radius */
+
+    /* Radius */
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Border Colors */
-    --border: 217 33% 17%;            /* #374151 */
-    --border-foreground: 215 20% 65%; /* #94A3B8 */
+    /* Dark-mode brand usage: intensify saturation slightly for clarity */
+    --gradient-start: 221 84% 60%;    /* #2563EB (slightly more saturated) */
+    --gradient-end: 258 90% 70%;      /* #8B5CF6 */
     
-    /* Main Colors - Gradient (Brighter in dark mode) */
-    --gradient-start: 221 84% 60%;    /* Brighter blue */
-    --gradient-end: 258 90% 73%;      /* Brighter purple */
+    --primary: 221 84% 60%;           /* #2563EB */
+    --primary-foreground: 210 40% 98%; /* #F8FAFC */
     
-    /* Accent Colors */
-    --accent: 265 90% 75%;           /* Even brighter violet for dark mode */
+    --secondary: 258 90% 70%;         /* #8B5CF6 */
+    --secondary-foreground: 210 40% 98%; /* #F8FAFC */
+
+    --accent: 260 94% 70%;            /* #9B5CFD */
     --accent-foreground: 220 13% 91%; /* Light gray for contrast */
     
-    /* Neutrals & Backgrounds */
-    --background: 222 20% 9%;         /* Dark base */
-    --background-gradient: linear-gradient(180deg,
-      hsl(222 20% 9%) 0%,            /* Dark base */
-      hsl(265 90% 75% / 0.05) 15%,   /* Start transition */
-      hsl(265 90% 75% / 0.08) 35%,   /* Build intensity */
-      hsl(265 90% 75% / 0.12) 75%    /* Full intensity */
+    /* Shift background to a deeper neutral */
+    --background: 222 20% 9%;         /* #1E1E28 approximate */
+    --background-gradient: linear-gradient(
+      180deg,
+      hsl(222 20% 9%) 0%, 
+      hsl(260 94% 70% / 0.05) 15%, 
+      hsl(260 94% 70% / 0.08) 35%, 
+      hsl(260 94% 70% / 0.12) 75%
     );
     --foreground: 210 40% 98%;       /* #F8FAFC */
-    --card: 217 33% 17%;            /* #374151 */
-    --card-foreground: 210 40% 98%;  /* #F8FAFC */
-    --popover: 217 33% 17%;         /* #374151 */
+    --card: 217 33% 17%;             /* #374151 */
+    --card-foreground: 210 40% 98%;   /* #F8FAFC */
+    --popover: 217 33% 17%;          /* #374151 */
     --popover-foreground: 210 40% 98%; /* #F8FAFC */
-    
-    /* Text Colors */
-    --muted: 215 16% 47%;          /* #64748B */
-    --muted-foreground: 215 20% 65%; /* #94A3B8 */
-    
-    /* Feedback Colors - Brighter in dark mode */
-    --success: 142 76% 45%;        /* Brighter success */
-    --success-foreground: 210 40% 98%; /* #F8FAFC */
-    --warning: 38 92% 60%;         /* Brighter warning */
-    --warning-foreground: 210 40% 98%; /* #F8FAFC */
-    --destructive: 0 84% 70%;      /* Brighter destructive */
-    --destructive-foreground: 210 40% 98%; /* #F8FAFC */
-    --info: 217 91% 70%;           /* Brighter info */
-    --info-foreground: 210 40% 98%; /* #F8FAFC */
 
-    /* Component Specific */
-    --primary: 221 84% 60%;         /* Brighter blue */
-    --primary-foreground: 210 40% 98%; /* #F8FAFC */
-    --secondary: 221 84% 20%;       /* Darker blue */
-    --secondary-foreground: 221 84% 60%; /* Brighter blue */
+    --border: 217 33% 17%;           /* #374151 */
+    --border-foreground: 215 20% 65%; /* #94A3B8 */
+
+    /* Muted is fine for dark mode. */
+    --muted: 215 16% 47%;          /* #64748B */
+    --muted-foreground: 215 20% 65%;  /* #94A3B8 */
+    
+    /* Keep the feedback system consistent. */
+    --success: 142 76% 45%;
+    --warning: 38 92% 60%;
+    --destructive: 0 84% 70%;
+    --info: 217 91% 70%;
+
     --ring: var(--accent);
   }
 }

@@ -9,7 +9,7 @@ This document outlines best practices, limitations, and conventions for using th
 ### Best Practices
 - **Strict Type Safety:**  
   - Enable `strict: true` in your `tsconfig.json` to enforce strict type-checking.
-  - Leverage TypeScript’s built-in utility types and use type inference where possible.
+  - Leverage TypeScript's built-in utility types and use type inference where possible.
 - **Modular Code Structure:**  
   - Organize code into modules and separate concerns logically.
   - Prefer using functions over classes for clear, predictable behavior.
@@ -26,7 +26,7 @@ This document outlines best practices, limitations, and conventions for using th
 - **Inadequate Typings for External Libraries:**  
   - Ensure that third-party libraries have proper TypeScript typings or install @types packages.
 - **Performance Overhead:**  
-  - Avoid heavy synchronous operations; leverage Node’s asynchronous APIs to maintain non-blocking behavior.
+  - Avoid heavy synchronous operations; leverage Node's asynchronous APIs to maintain non-blocking behavior.
 
 ---
 
@@ -34,7 +34,7 @@ This document outlines best practices, limitations, and conventions for using th
 
 ### Best Practices
 - **File-Based Routing:**  
-  - Utilize Next.js’ file-based routing system effectively; keep routes clear and hierarchical.
+  - Utilize Next.js' file-based routing system effectively; keep routes clear and hierarchical.
 - **Data Fetching:**  
   - Use Next.js data fetching methods (getStaticProps, getServerSideProps) as appropriate to balance SSR and SSG.
 - **Component Structure:**  
@@ -71,7 +71,7 @@ This document outlines best practices, limitations, and conventions for using th
 - **Overriding Styles:**  
   - Avoid heavy customization that negates the benefits of the pre-built accessibility of Shadcn/Radix UI.
 - **Performance Considerations:**  
-  - Be mindful of runtime performance when applying many utility classes; use PurgeCSS (or Tailwind’s built-in JIT mode) to remove unused styles.
+  - Be mindful of runtime performance when applying many utility classes; use PurgeCSS (or Tailwind's built-in JIT mode) to remove unused styles.
 - **Responsive Complexity:**  
   - Thoroughly test responsive behaviors across devices to ensure consistency.
 
@@ -103,9 +103,9 @@ This document outlines best practices, limitations, and conventions for using th
 ### Best Practices
 - **Security & Environment Variables:**  
   - Store API keys and secrets securely using environment variables.
-  - Leverage Supabase’s built-in authentication and authorization mechanisms.
+  - Leverage Supabase's built-in authentication and authorization mechanisms.
 - **Real-Time Subscriptions:**  
-  - Use Supabase’s real-time subscriptions to keep your UI in sync with the database.
+  - Use Supabase's real-time subscriptions to keep your UI in sync with the database.
 - **Query Optimization:**  
   - Optimize queries and use indexes where necessary to improve query performance.
   - Write clear and concise queries to reduce load on the database.
@@ -140,9 +140,9 @@ This document outlines best practices, limitations, and conventions for using th
 
 ### Best Practices
 - **Environment Management:**  
-  - Use Vercel’s environment configuration to securely store credentials and deployment settings.
+  - Use Vercel's environment configuration to securely store credentials and deployment settings.
 - **Optimized Builds:**  
-  - Leverage Vercel’s optimized Next.js support for rapid deployments and performance.
+  - Leverage Vercel's optimized Next.js support for rapid deployments and performance.
 - **Monitoring:**  
   - Set up logging and monitoring to track performance, errors, and usage metrics.
 
@@ -175,7 +175,7 @@ This document outlines best practices, limitations, and conventions for using th
 
 ### Best Practices
 - **Selective Subscription:**  
-  - Use Zustand’s selective subscriptions to only re-render components that need updates.
+  - Use Zustand's selective subscriptions to only re-render components that need updates.
 - **Modularity:**  
   - Organize the global state into small, focused slices to improve performance and manageability.
 - **Cleanup:**  
@@ -189,23 +189,28 @@ This document outlines best practices, limitations, and conventions for using th
 
 ---
 
-## 10. Testing & Quality Assurance: ESLint, Prettier, Jest
+## 10. Testing & Quality Assurance: ESLint, Prettier, Vitest
 
 ### Best Practices
 - **Linting & Formatting:**  
   - Enforce code quality using ESLint and auto-formatting via Prettier. Integrate these tools into your CI pipeline.
 - **Unit & Integration Testing:**  
-  - Write comprehensive tests using Jest, covering critical paths and data flows.
+  - Write comprehensive tests using Vitest, leveraging its native TypeScript support and ESM compatibility.
+  - Take advantage of Vitest's built-in watch mode and fast test execution.
+  - Note: Some existing services (like Firecrawl) may continue using Jest until migration is complete.
 - **Continuous Integration:**  
   - Run tests on every commit to ensure that changes do not break existing functionality.
 - **Mocking:**  
-  - Use mocking techniques for API routes, asynchronous functions, and state management to isolate tests.
+  - Use Vitest's mocking capabilities for API routes, asynchronous functions, and state management to isolate tests.
+  - Leverage Vitest's compatibility with Jest's mocking syntax for easier migration from existing Jest tests.
 
 ### Common Pitfalls & Limitations
 - **Test Coverage Gaps:**  
   - Ensure that tests cover both frontend and backend components to avoid overlooked edge cases.
+  - Use Vitest's coverage reporting to identify areas needing additional test coverage.
 - **Flaky Tests:**  
   - Design tests to be deterministic, especially when working with asynchronous processes or real-time updates.
+  - Take advantage of Vitest's improved handling of async operations and timeouts.
 
 ---
 

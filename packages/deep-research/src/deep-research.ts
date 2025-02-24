@@ -33,13 +33,24 @@ export type ResearchResult = {
 };
 
 // increase this if you have higher API rate limits
-const ConcurrencyLimit = 2;
+const ConcurrencyLimit = config.firecrawl.concurrencyLimit;
 
 // Initialize Firecrawl with configuration
-const firecrawl = new FirecrawlApp({
-  apiKey: config.firecrawl.apiKey,
-  apiUrl: config.firecrawl.baseUrl,
-});
+let firecrawl: FirecrawlApp;
+
+function initializeFirecrawl() {
+  if (!firecrawl) {
+    if (!config.firecrawl.baseUrl) {
+      throw new FirecrawlError('Firecrawl base URL is not configured');
+    }
+    
+    firecrawl = new FirecrawlApp({
+      apiKey: config.firecrawl.apiKey,
+      apiUrl: config.firecrawl.baseUrl,
+    });
+  }
+  return firecrawl;
+}
 
 // Error types for better error handling
 export class FirecrawlError extends Error {
@@ -57,7 +68,7 @@ export class ResearchError extends Error {
 }
 
 // take en user query, return a list of SERP queries
-async function generateSerpQueries({
+export async function generateSerpQueries({
   query,
   numQueries = 3,
   learnings,
@@ -110,7 +121,7 @@ export interface ProcessedResult {
   visitedUrls: string[];
 }
 
-async function processSerpResult({
+export async function processSerpResult({
   query,
   result,
   numLearnings = 3,
@@ -203,6 +214,7 @@ export async function deepResearch({
   learnings = [],
   visitedUrls = [],
   onProgress,
+  signal,
 }: {
   query: string;
   breadth: number;
@@ -210,6 +222,7 @@ export async function deepResearch({
   learnings?: string[];
   visitedUrls?: string[];
   onProgress?: (progress: ResearchProgress) => void;
+  signal?: AbortSignal;
 }): Promise<ResearchResult> {
   const progress: ResearchProgress = {
     currentDepth: depth,
@@ -242,7 +255,8 @@ export async function deepResearch({
     serpQueries.map(serpQuery =>
       limit(async () => {
         try {
-          const result = await firecrawl.search(serpQuery.query, {
+          const fc = initializeFirecrawl();
+          const result = await fc.search(serpQuery.query, {
             timeout: 15000,
             limit: 5,
             scrapeOptions: { formats: ['markdown'] },
@@ -285,6 +299,7 @@ export async function deepResearch({
               learnings: allLearnings,
               visitedUrls: allUrls,
               onProgress,
+              signal,
             });
           } else {
             reportProgress({

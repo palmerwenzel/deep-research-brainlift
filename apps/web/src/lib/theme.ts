@@ -2,7 +2,7 @@
  * theme.ts
  * -----------
  * Theme constants and helper functions for the Deep Research Agent project.
- * Implements styling based on theme guidelines.
+ * Updated to match new blue & purple brand approach.
  */
 
 export const themeConfig = {
@@ -45,6 +45,11 @@ export const themeConfig = {
 
 // Helper function to generate gradient background style
 export function getGradientStyle(direction: 'to-right' | 'to-bottom' = 'to-right') {
+  /*
+    Light mode picks up --gradient-start: #2563EB (blue) 
+    to --gradient-end: #8B5CF6 (purple).
+    Dark mode references slightly more saturated parallels.
+  */
   return `linear-gradient(${direction}, hsl(var(--gradient-start)), hsl(var(--gradient-end)))`;
 }
 
@@ -68,6 +73,7 @@ export function getShadowStyle(size: keyof typeof themeConfig.shadows, colorOver
 
 // Helper function to get component background with optional hover state
 export function getBackgroundStyle(isHovered = false) {
+  // Use "accent" for hovered effect, or fallback to standard background
   return {
     backgroundColor: `hsl(var(--${isHovered ? 'accent' : 'background'}))`,
     transition: getTransitionStyle(['background-color']),
@@ -80,4 +86,4 @@ export function meetsContrastRequirements(foreground: string, background: string
   // In a real implementation, we'd use a color contrast library
   console.warn('Contrast check not implemented for:', foreground, background);
   return true;
-} 
+}

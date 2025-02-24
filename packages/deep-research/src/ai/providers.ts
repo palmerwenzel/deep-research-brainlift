@@ -9,7 +9,7 @@ interface CustomOpenAIProviderSettings extends OpenAIProviderSettings {
 
 // Providers
 const openai = createOpenAI({
-  apiKey: process.env.OPENAI_KEY!,
+  apiKey: process.env.OPENAI_API_KEY!,
   baseURL: process.env.OPENAI_ENDPOINT || 'https://api.openai.com/v1',
 } as CustomOpenAIProviderSettings);
 
